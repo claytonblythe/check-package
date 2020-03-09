@@ -40,8 +40,6 @@ func makeUSPSRequest(url string, packageNumStr string) {
 		log.Fatal(err)
 	}
 
-	expectedDelivery := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.expected_delivery > h2 > span").Text()
-	fmt.Println(expectedDelivery)
 	weekdayStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.expected_delivery > h2 > span > span:nth-child(1) > em").Text()
 	dayStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.expected_delivery > h2 > span > span:nth-child(1) > strong").Text()
 	timeStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.expected_delivery > h2 > span > span:nth-child(2) > span > strong").Text()
