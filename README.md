@@ -1,6 +1,6 @@
 # check-package
 
-Check package is a command line utility written in Go to check the status of a package you are waiting for. 
+Toy project to make a command line utility written in Go to check the status of a package you are waiting for. 
 
 Currently USPS is supported
 
@@ -8,6 +8,11 @@ Currently USPS is supported
 
 ```
 go get github.com/claytonblythe/check-package
+```
+
+It should be installed at $GOPATH/bin and be in your $PATH for you to run with autocomplete
+```
+ls $GOPATH/bin/check*
 ```
 
 ### Usage
