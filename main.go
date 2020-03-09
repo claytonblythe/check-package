@@ -16,16 +16,6 @@ func makeUSPSRequest(url string, packageNumStr string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	req.Header.Set("authority", "tools.usps.com")
-	req.Header.Add("cache-control", "max-age=0")
-	req.Header.Add("upgrade-insecure-requests", "1")
-	req.Header.Add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36")
-	req.Header.Add("sec-fetch-dest", "document")
-	req.Header.Add("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9")
-	req.Header.Add("sec-fetch-site", "cross-site")
-	req.Header.Add("sec-fetch-mode", "navigate")
-	req.Header.Add("sec-fetch-user", "?1")
-	req.Header.Add("accept-language", "en-US,en;q=0.9,es-US;q=0.8,es;q=0.7,zh-CN;q=0.6,zh;q=0.5")
 	q := req.URL.Query()
 	q.Add("qtc_tLabels1", packageNumStr)
 	req.URL.RawQuery = q.Encode()
