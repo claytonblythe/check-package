@@ -40,15 +40,17 @@ func makeUSPSRequest(url string, packageNumStr string) {
 		log.Fatal(err)
 	}
 
-	weekdayStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary.delivery_transit > div.expected_delivery > h2 > span > span:nth-child(1) > em").Text()
-	dayStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary.delivery_transit > div.expected_delivery > h2 > span > span:nth-child(1) > strong").Text()
-	timeStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary.delivery_transit > div.expected_delivery > h2 > span > span:nth-child(2) > span > strong").Text()
+	expectedDelivery := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.expected_delivery > h2 > span").Text()
+	fmt.Println(expectedDelivery)
+	weekdayStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.expected_delivery > h2 > span > span:nth-child(1) > em").Text()
+	dayStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.expected_delivery > h2 > span > span:nth-child(1) > strong").Text()
+	timeStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.expected_delivery > h2 > span > span:nth-child(2) > span > strong").Text()
 	timeStr = strings.ReplaceAll(timeStr, "\n", "")
 	timeStr = strings.ReplaceAll(timeStr, "\t", "")
 	finalTimeStr := strings.Fields(timeStr)[0]
-	monthStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary.delivery_transit > div.expected_delivery > h2 > span > span:nth-child(1) > span > span:nth-child(1)").Text()
-	statusStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary.delivery_transit > div.delivery_status > h2 > strong").Text()
-	statusFeed := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary.delivery_transit > div.delivery_status > div").ChildrenFiltered("p").Text()
+	monthStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.expected_delivery > h2 > span > span:nth-child(1) > span > span:nth-child(1)").Text()
+	statusStr := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.delivery_status > h2 > strong").Text()
+	statusFeed := doc.Find("#tracked-numbers > div > div > div > div > div.product_summary > div.delivery_status > div").ChildrenFiltered("p").Text()
 	statusFeed = strings.TrimSpace(statusFeed)
 	parts := strings.Split(statusFeed, " ")
 	var parts2 []string
