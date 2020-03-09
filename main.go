@@ -20,7 +20,11 @@ func makeUSPSRequest(url string, packageNumStr string) {
 	q.Add("qtc_tLabels1", packageNumStr)
 	req.URL.RawQuery = q.Encode()
 	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
 	defer resp.Body.Close()
+
 	if err != nil {
 		log.Fatal(err)
 	}
